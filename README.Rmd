@@ -1,0 +1,73 @@
+---
+output: github_document
+bibliography: references.bib
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# DTtiming
+
+<!-- badges: start -->
+
+<!-- badges: end -->
+
+The goal of DTtiming is to estimate the timing of the demographic transition using the model by @delventhalDemographicTransitionsTime2023
+
+## Installation
+
+You can install the development version of DTtiming like so:
+
+``` r
+# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+```
+
+## Example
+
+Setup and example data:
+
+```{r example}
+library(DTtiming)
+library(ggplot2)
+## basic example code
+
+## Create example data:
+T_max = 100
+x_t = rep(1, T_max)
+tau_2 = 33
+tau_3 = 67
+y = matrix(make_z1_scalar(1:T_max, tau_2, tau_3)*10 + rnorm(T_max, sd = 0.2),
+          ncol = 1)
+
+# Plot the data:
+ggplot(data.frame(x = 1:T_max,
+                  y = y),
+  aes(x = x, y = y)) +
+  geom_point()
+
+```
+
+Now we can fit the model:
+
+```{r}
+
+DT_fit = grid_Search_best_DT_fit(y)
+
+plot_DT_fit(DT_fit)
+```
+
+All relevant parameters are returned:
+
+```{r}
+DT_fit
+```
+
+## References
