@@ -27,7 +27,7 @@ The goal of DTtiming is to estimate the timing of the demographic transition usi
 You can install the development version of DTtiming like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+remotes::install_github("https://github.com/m-g-h/DTtiming")
 ```
 
 ## Example
@@ -37,18 +37,17 @@ Setup and example data:
 ```{r example}
 library(DTtiming)
 library(ggplot2)
-## basic example code
 
 ## Create example data:
 T_max = 100
-x_t = rep(1, T_max)
-tau_2 = 33
-tau_3 = 67
-y = matrix(make_z1_scalar(1:T_max, tau_2, tau_3)*10 + rnorm(T_max, sd = 0.2),
+t = 1950+(1:T_max)
+tau_2 = 2000
+tau_3 = 2025
+y = matrix(make_z1_scalar(t, tau_2, tau_3)*10 + rnorm(T_max, sd = 0.2),
           ncol = 1)
 
 # Plot the data:
-ggplot(data.frame(x = 1:T_max,
+ggplot(data.frame(x = t,
                   y = y),
   aes(x = x, y = y)) +
   geom_point()
